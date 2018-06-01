@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<script src="js/tools新.js" type="text/javascript" charset="utf-8"></script>
+		<style type="text/css">
+			
+			*{
+				padding: 0px;
+				margin:0px;
+			}
+			.box{
+				height: 55px;
+				width: 600px;
+				border-right: 1px solid #666;
+				border-bottom: 1px solid #666;
+				line-height: 55px;
+				font-size: 13px;
+			}
+			ul{
+				height: 100%;
+				overflow: hidden;
+				display: inline-block;
+				line-height: 55px;
+				vertical-align: top;
+				margin-left: 30px;
+			}
+			li{
+				height: 100%;
+				float: left;
+				list-style: none;
+				margin-right: 15px;
+				font-size: 13px;
+				color: #875aa8;
+				line-height: 55px;
+				
+			}
+			#xianshi,#xianshi1,#xianshi2{
+				height: 20px;
+				border: 1px solid #ddd;
+				font-size: 13px;
+				line-height: 20px;
+				float: left;
+				margin-right: 10px;
+				display: none;
+				padding-left: 10px;
+				padding-right: 10px;
+				color: #666;
+				margin-top: 10px;
+			}
+			#xianshi div,#xianshi1 div,#xianshi2 div{
+				display: inline-block;
+				color: #e47dc2;
+				font-size: 13px;
+				line-height: 20px;
+				font-style: italic;
+				float: right;
+				margin-right: 5px;
+			}
+			.cha{
+				float: right;
+				color: #e47dc2;
+				font-size: 13px;
+				line-height: 20px;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box">
+			价格：
+			<ul id="jiage">
+				<li>0-299</li>
+				<li>300-699</li>
+				<li>700-1099</li>
+				<li>1100-1999</li>
+				<li>2000-3599</li>
+				<li>3600-4299</li>
+				<li>43001以上</li>
+			</ul>
+		</div>
+		<div class="box">
+			类别：
+			<ul id="leibie">
+				<li>文件夹</li>
+				<li>美工刀</li>
+				<li>文件筐</li>
+				<li>三针一钉</li>
+				<li>风琴包</li>
+				<li>票夹</li>
+			</ul>
+		</div>
+		<div class="box">
+			品牌：
+			<ul id="pinpai">
+				<li>得力</li>
+				<li>齐心</li>
+				<li>优比利</li>
+				<li>GBC</li>
+				<li>广博</li>
+				<li>利兰</li>
+			</ul>
+		</div>
+		<div id="xianshi">
+			<span>价格:</span>
+			<span  class="cha">×</span>
+			<div></div>
+		</div>
+		<div id="xianshi1">
+			<span>类别:</span>
+			<span  class="cha">×</span>
+			<div></div>
+		</div>
+		<div id="xianshi2">
+			<span>品牌:</span>
+			<span  class="cha">×</span>
+			<div></div>
+		</div>
+		<script type="text/javascript">
+			var prices=$('li',$('#jiage'));
+			var pinpais=$('li',$('#pinpai'));
+			var leibies=$('li',$('#leibie'));
+			var xianshi=$('#xianshi');
+			var jiagexianshi=$('div',xianshi)[0]
+			var leibiexianshi=$('div',$('#xianshi1'))[0];
+			var pinpaixianshi=$('div',$('#xianshi2'))[0];
+			var chas=$('.cha');
+			function daqingxi(obj){
+				for(i=0;i<obj.length;i++){
+					obj[i].style.display='block';
+				}
+			}
+			for(i=0;i<prices.length;i++){
+				prices[i].onclick=function(){
+                    daqingxi(prices)
+                    this.style.display='none';
+                    jiagexianshi.parentNode.style.display='block';
+                    jiagexianshi.innerHTML =  this.innerHTML;
+				}
+				pinpais[i].onclick=function(){
+                    daqingxi(pinpais)
+                    this.style.display='none';
+                    pinpaixianshi.parentNode.style.display='block';
+                    pinpaixianshi.innerHTML =  this.innerHTML;
+				}
+				leibies[i].onclick=function(){
+                    daqingxi(leibies)
+                    this.style.display='none';
+                    leibiexianshi.parentNode.style.display='block';
+                    leibiexianshi.innerHTML =  this.innerHTML;
+				}
+			}
+			for(i=0;i<chas.length;i++){
+				chas[i].index=i;
+				chas[i].onclick=function(){
+					this.parentNode.style.display='none';
+					if(this.index==0){
+						daqingxi(prices);
+					}else if(this.index==1){
+						daqingxi(leibies)
+					}else if(this.index==2){
+						daqingxi(pinpais)
+					}
+				}
+			}
+		</script>
+	</body>
+</html>
